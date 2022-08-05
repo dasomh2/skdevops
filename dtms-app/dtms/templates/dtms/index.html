@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SK DT Lv.3 TEST</title>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1 align="center">SK DT Lv.3 TEST Page</h1>
+    <br><br>
+
+    <div class="buttonDiv" align="center">
+        <button id ="btnView">dictionary 조회</button>
+<!--        <button onclick="btnClick()">dictionary 조회</button>-->
+    </div>
+    <br><br>
+    <div class = "container">
+
+
+    </div>
+
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function() {
+        $("#btnView").click(function() {
+
+            var str = "";
+
+            str += "<table><thead><tr><td><B>CATALOG_NAME</B></td>"
+                       + "<td><B>SCHEMA_NAME</B></td>"
+                       + "<td><B>DEFAULT_CHARACTER_SET_NAME</B></td>"
+                       + "<td><B>DEFAULT_COLLATION_NAME</B></td>"
+                       + "<td><B>DEFAULT_ENCRYPTION</B></td></tr></thead>"
+
+            {% for list in context %}
+            str += "<tr><td>{{list.catalog_name}}</td>"
+                    + "<td>{{list.schema_name}}</td>"
+                    + "<td>{{list.default_ch_name}}</td>"
+                    + "<td>{{list.default_co_name}}</td>"
+                    + "<td>{{list.default_encryption}}</td>"
+            {% endfor %}
+
+            str += "</table>"
+            $(".container").html(str);
+        })
+    });
+</script>
+
+
